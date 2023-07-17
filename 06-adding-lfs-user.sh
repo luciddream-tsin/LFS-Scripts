@@ -7,7 +7,7 @@ useradd -s /bin/bash -g lfs -m -k /dev/null lfs
 # Give lfs a password
 passwd lfs
 
-# Grant user lfs to access $LFS
+# Grant user lfs as Owner of $LFS
 chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
 case $(uname -m) in
     x86_64) chown -v lfs $LFS/lib64 ;;
