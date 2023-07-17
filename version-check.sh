@@ -54,7 +54,7 @@ python3 --version
 
 sed --version | head -n1
 tar --version | head -n1
-makeinfo --version | head -n1 # texinfo version
+makeinfo --version | head -n1 # texinfo version, if makeinfo not found, install texinfo please.
 xz --version | head -n1
 
 echo 'int main(){}' > dummy.c && g++ -o dummy dummy.c
