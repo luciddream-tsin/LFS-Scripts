@@ -13,7 +13,9 @@ case $(uname -m) in
     x86_64) chown -v lfs $LFS/lib64 ;;
 esac
 
+# Login as user lfs
 su - lfs
+
 
 
 

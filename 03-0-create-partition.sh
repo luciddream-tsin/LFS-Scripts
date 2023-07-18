@@ -24,9 +24,6 @@ mkfs.ext4 /dev/${disk}1
 
 echo "Partition creation complete."
 
-# Mounting the new partition
-mkdir -pv $LFS
-mount -v -t ext4 /dev/${disk}1 $LFS
 
 
 
