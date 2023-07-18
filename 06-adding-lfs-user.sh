@@ -1,22 +1,24 @@
-# Create a new group named lfs
-groupadd lfs
+#!/bin/bash
 
-# Create a new user named lfs to the lfs group, with default shell bash and home dir.
-useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+# Check if lfs group exists
+if ! grep -q "^lfs:" /etc/group; then
+  echo "Creating lfs group..."
+  groupadd lfs
+fi
 
-# Give lfs a password
-passwd lfs
+# Check if lfs user exists
+if ! id -u lfs > /dev/null 2>&1; then
+  echo "Creating lfs user..."
+  # Create lfs user and add to lfs group
+  useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+  
+  # Set password for lfs user
+  passwd lfs
 
-# Grant user lfs as Owner of $LFS
+fi
+  
+# Set ownership of $LFS directory
 chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
 case $(uname -m) in
     x86_64) chown -v lfs $LFS/lib64 ;;
 esac
-
-# Login as user lfs
-su - lfs
-
-
-
-
-

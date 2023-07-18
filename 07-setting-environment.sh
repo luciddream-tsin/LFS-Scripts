@@ -21,4 +21,6 @@ export LFS LC_ALL LFS_TGT PATH CONFIG_SITE
 EOF
 
 # 
-source ~/.bash_profile
+source ~/.bashrc
+
+cd $LFS/
