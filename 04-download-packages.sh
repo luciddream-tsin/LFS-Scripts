@@ -6,9 +6,6 @@ else
     mkdir -v $LFS/sources
 fi
 
-# Make sure this dir sticky mode
-chmod -v a+wt $LFS/sources
-
 # Download packages, https://www.linuxfromscratch.org/mirrors.html
 # Way 1:
 # wget --input-file=wget-list-sysv --continue --directory-prefix=$LFS/sources
@@ -21,30 +18,20 @@ if [ ! -f "$LFS/sources/$pkg_name" ]; then
 	wget https://mirror.dogado.de/LFS/lfs-packages/lfs-packages-11.2.tar -P $LFS/sources
 fi
 
+# Extract the tar.
 cd $LFS/sources
 tar -xvf $pkg_name
 
+# Move all the packages into root of the $LFS/soruces dir.
+dir=$(find . -type d -name "*11.2*")
+if [ -d "$dir" ]; then
+  echo "Moving contents of $dir to current directory..."
+  mv "$dir"/* .
+  echo "Done."
+else
+  echo "No directory with '11.2' in its name found in current directory."
+fi
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Make sure this dir sticky mode
+chmod -v a+wt $LFS/sources
 
