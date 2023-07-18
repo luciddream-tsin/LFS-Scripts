@@ -22,5 +22,4 @@ EOF
 
 # 
 source ~/.bashrc
-
-cd $LFS/
+source ~/.bash_profile
