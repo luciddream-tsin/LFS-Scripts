@@ -2,7 +2,7 @@
 
 # List available disk devices and filter for devices larger than 20GB
 echo "Available disks larger than 20GB:"
-lsblk -d -o NAME,SIZE | grep -E '^sd[a-z]' | awk '{print $1, "(" $2 ")"}'
+lsblk -d -o NAME,SIZE | grep -E '^(sd[a-z]|nvme)' | awk '{print $1, "(" $2 ")"}'
 
 # Prompt user to select a disk device to partition
 echo "Please select a disk device to partition (just name, pre /dev/** auto added):"
@@ -14,13 +14,17 @@ echo "n/p/1/ENTER/+20*1024mb/w"
 fdisk /dev/$disk
 
 
-# Cautious the ${disk}1, the 1 is default number
-# If you input another number when create partition, change it.
+echo "list current all partitions:"
+lsblk -o NAME,MOUNTPOINT,SIZE,TYPE /dev/sda /dev/nvme0n1 | grep -E '^sd[a-z]|^nvme+|^├─|^└─'
+
+# Prompt user to select a disk device to partition
+echo "Please in put the name of the partition you created:"
+read partition
 
 # Format the new partition as ext4 using mkfs
-echo "Formatting the new partition as ext4..."
+echo "Formatting the new partition $partition as ext4..."
 # mkfs -v -t ext4 /dev/${disk}1 
-mkfs.ext4 /dev/${disk}1
+mkfs.ext4 /dev/$partition
 
 echo "Partition creation complete."
 
