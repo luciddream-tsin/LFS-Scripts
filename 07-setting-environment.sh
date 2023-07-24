@@ -23,3 +23,6 @@ EOF
 # 
 source ~/.bashrc
 source ~/.bash_profile
+
+# not stay ~ , because our scripts at $LFS
+cd $LFS
