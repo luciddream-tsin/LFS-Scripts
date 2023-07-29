@@ -15,7 +15,7 @@ fdisk /dev/$disk
 
 
 echo "list current all partitions:"
-lsblk -o NAME,MOUNTPOINT,SIZE,TYPE /dev/sda /dev/nvme0n1 | grep -E '^sd[a-z]|^nvme+|^├─|^└─'
+lsblk -o NAME,MOUNTPOINT,SIZE,TYPE /dev/sd* /dev/nvme* | grep -E '^sd[a-z]|^nvme+|^├─|^└─'
 
 # Prompt user to select a disk device to partition
 echo "Please in put the name of the partition you created:"

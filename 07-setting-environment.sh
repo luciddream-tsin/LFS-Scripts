@@ -1,13 +1,13 @@
-# Login with user lfs
-su - lfs
-
 # For login shell.
-cat > ~/.bash_profile << "EOF"
+if [ $(whoami) = "lfs" ]; then
+    cat > ~/.bash_profile << "EOF"
 exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
 EOF
+fi
 
 # For non-login shell.
-cat > ~/.bashrc << "EOF"
+if [ $(whoami) = "lfs" ]; then
+    cat > ~/.bashrc << "EOF"
 set +h
 umask 022
 LFS=/mnt/lfs
@@ -19,10 +19,8 @@ PATH=$LFS/tools/bin:$PATH
 CONFIG_SITE=$LFS/usr/share/config.site
 export LFS LC_ALL LFS_TGT PATH CONFIG_SITE
 EOF
+fi
 
 # 
 source ~/.bashrc
 source ~/.bash_profile
-
-# not stay ~ , because our scripts at $LFS
-cd $LFS

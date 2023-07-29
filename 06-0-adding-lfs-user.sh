@@ -17,8 +17,10 @@ if ! id -u lfs > /dev/null 2>&1; then
 
 fi
   
-# Set ownership of $LFS directory
-chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
+
 case $(uname -m) in
     x86_64) chown -v lfs $LFS/lib64 ;;
 esac
+
+# Set ownership of $LFS directory
+chown -v lfs $LFS/{usr{,/*},lib*,var,etc,bin,sbin,tools}
