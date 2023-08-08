@@ -13,5 +13,8 @@ if [ -d "$LFS/sources" ]; then
 else
   echo "sources dir not exist."
 fi
-cp 07*.sh 08*.sh x*.sh $LFS/
+
+# TODO: if you exec this sh under $LFS, this line not effective.
+cp -f 07*.sh 08*.sh 09*.sh 10*.sh 11*.sh x*.sh $LFS/
+
 
