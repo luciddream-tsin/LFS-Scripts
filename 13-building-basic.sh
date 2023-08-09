@@ -1029,7 +1029,7 @@ done
 
 unset BIN LIB save_usrlib online_usrbin online_usrlib
 
-# 8.78. Cleaning Up
+# 8.79. Cleaning Up
 rm -rf /tmp/*
 find /usr/lib /usr/libexec -name \*.la -delete
 find /usr -depth -name $(uname -m)-lfs-linux-gnu\* | xargs rm -rf
